@@ -1,126 +1,118 @@
-♻️ Smart Waste Management System
-📌 Project Overview
+# 🗑️ Smart Waste Classification System
 
-This project is developed as part of the EC9570 – Digital Image Processing course at the University of Jaffna. The system uses image processing techniques and deep learning to classify waste items into categories (e.g., cardboard, glass, metal, paper, plastic, trash). The goal is to support smart waste management by simulating sorting actions and generating statistical reports.
+## 📌 Project Overview
 
-✨ Features
+This project implements a **Smart Waste Classification System** using **digital image processing and deep learning**.  
+The system classifies waste items into categories such as **cardboard, glass, metal, paper, plastic, and trash**, and simulates waste sorting actions.
 
-📷 Accepts and processes waste images
+Dataset used: [TrashNet](https://github.com/garythung/trashnet)
 
-🧠 Classifies waste into categories using a trained deep learning model (EfficientNet/other CNN)
+---
 
-📊 Generates statistical logs and reports of processed waste
+## 🚀 Features
 
-🎛️ Simulates sorting actions (graphical indicators, console messages, or optional hardware actuators)
+- 📷 Accept and process images containing waste items
+- 🧠 Classify waste into categories using CNN with transfer learning
+- 🔄 Count and categorize processed waste items
+- 📊 Maintain logs & generate statistical reports
+- 🎮 Simulate/visualize sorting actions (console messages & charts)
+- (Optional) Hardware integration with actuators for real-time sorting
 
-✅ Achieves at least 80% accuracy on validation/testing data
+---
 
-🛠️ System Requirements
-Software
+## ⚙️ Installation
 
-Python 3.8+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/AshanOdi/Smart-Waste-Classification-System.git
+   cd Smart-Waste-Classification-System
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Libraries:
+---
 
-OpenCV
+## 📊 Dataset Preparation
 
-NumPy
+1. Download **TrashNet dataset**  
+   [TrashNet on Kaggle](https://www.kaggle.com/datasets/asdasdasasdas/garbage-classification)
+2. Split into **train / validation / test** sets:
+   ```bash
+   python src/preprocess.py
+   ```
 
-Torch / TensorFlow (for classification)
+---
 
-Matplotlib / Seaborn (for visualization)
+## 🏋️ Training the Model
 
-Streamlit (for web app interface)
+```bash
+python src/train.py --epochs 20 --batch_size 32 --lr 0.001
+```
 
-Hardware (Optional)
+The trained model will be saved in the `models/` folder.
 
-Camera/Webcam (for live capture)
+---
 
-Arduino/Raspberry Pi (for actuator control)
+## 🔍 Running Classification
 
-Servo motors / LEDs (for sorting simulation)
+Classify a single image:
 
-📂 Dataset
+```bash
+python src/classify.py --image test_samples/bottle.jpg
+```
 
-The project uses the TrashNet Dataset
- containing images in six categories:
+Example output:
 
-Cardboard
+```
+[RESULT] Predicted: Plastic (92%)
+[SIM] Action: Divert to Bin A
+```
 
-Glass
+---
 
-Metal
+## 📑 Logs & Reports
 
-Paper
+- Every classification is saved in `logs/waste_log.csv` with:
 
-Plastic
+  - Timestamp
+  - Image name
+  - Predicted category
+  - Confidence score
 
-Trash
+- Generate statistical reports:
+  ```bash
+  python src/report.py
+  ```
+  → Outputs **bar charts & pie charts** of waste distribution.
 
-Note: All datasets must be cited if reused.
+---
 
-🚀 Installation & Setup
+## 🖥️ Simulation
 
-Clone the repository
+- Console simulation:  
+  Displays a message like
+  ```
+  Predicted: Paper → Actuator: Bin B
+  ```
+- Visualization:  
+  `report.py` generates real-time graphs of waste counts.
 
-git clone https://github.com/yourusername/smart-waste-management.git
-cd smart-waste-management
+---
 
+## ✅ Minimum Functional Requirements (Covered)
 
-Create a virtual environment & install dependencies
+- [x] Accept and process images
+- [x] Apply image classification
+- [x] Count and categorize waste items
+- [x] Maintain statistical logs/reports
+- [x] Simulate sorting actions
 
-python -m venv venv
-source venv/bin/activate   # On Linux/Mac
-venv\Scripts\activate      # On Windows
-pip install -r requirements.txt
+---
 
+## 🔮 Future Enhancements
 
-Run the Streamlit app
-
-streamlit run app.py
-
-📊 Project Workflow
-
-Image Acquisition & Preprocessing
-
-Load and resize images
-
-Apply normalization and augmentation
-
-Waste Classification
-
-Model trained on TrashNet dataset
-
-EfficientNet / CNN architecture used for classification
-
-Statistical Analysis & Reporting
-
-Count number of items per category
-
-Generate logs and visual reports
-
-Simulation of Sorting
-
-Console messages or graphical visualization
-
-Optional actuator control with Arduino/Raspberry Pi
-
-👥 Contributors
-
-[Your Name] – Image Preprocessing & Model Training
-
-[Teammate’s Name] – Web App & Statistical Reporting
-
-🎯 Future Enhancements
-
-Real-time classification via webcam
-
-Integration with IoT-enabled smart bins
-
-Recyclability detection
-
-Deployment on embedded edge devices
-
-📜 License
-
-This project is for academic purposes only (University of Jaffna).
+- Real-time video classification
+- Conveyor belt & actuator control via Raspberry Pi/Arduino
+- Deploy as a **Streamlit web app** for interactive demo
